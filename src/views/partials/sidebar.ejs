@@ -88,8 +88,7 @@
 <div class="left-side-bar">
   <div class="brand-logo">
     <a href="/admin">
-      <img src="/frontend/images/3s_logo.png" alt="" class="dark-logo" />
-      <img src="/frontend/images/3s_logo.png" alt="" class="light-logo" />
+      Mini-Shop
     </a>
     <div class="close-sidebar" data-toggle="left-sidebar-close">
       <i class="ion-close-round"></i>
@@ -100,35 +99,8 @@
       <ul id="accordion-menu">
         <li>
           <a href="/admin" class="dropdown-toggle no-arrow">
-            <span class="micon dw dw-house-1"></span><span class="mtext">Home</span>
+            <span class="micon dw dw-house-1"></span><span class="mtext">ໜ້າຫຼັກ</span>
           </a>
-        </li>
-        <li class="dropdown">
-          <a href="javascript:;" class="dropdown-toggle">
-            <span class="micon dw dw-user-2"></span><span class="mtext">Employees</span>
-          </a>
-          <ul class="submenu">
-            <li><a href="/admin/employees">Employees</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
-          <a href="javascript:;" class="dropdown-toggle">
-            <span class="micon dw dw-edit2"></span><span class="mtext">Services</span>
-          </a>
-          <ul class="submenu">
-            <li><a href="/admin/services">Services</a></li>
-            <li><a href="/admin/banners">Banners</a></li>
-            <li><a href="/admin/blogs">Posts</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
-          <a href="javascript:;" class="dropdown-toggle">
-            <span class="micon dw dw-user-13"></span><span class="mtext">Customers</span>
-          </a>
-          <ul class="submenu">
-            <li><a href="/admin/customers">Customers</a></li>
-            <li><a href="/admin/projects">Projects</a></li>
-          </ul>
         </li>
         <li class="dropdown">
           <a href="javascript:;" class="dropdown-toggle">
@@ -139,47 +111,22 @@
             <li><a href="/admin/categories">ປະເພດສີນຄ້າ</a></li>
           </ul>
         </li>
-        <li>
-          <a href="#" class="dropdown-toggle no-arrow">
-            <span class="micon dw dw-calendar"></span><span class="mtext">Activity Events</span>
-          </a>
-        </li>
         <li class="dropdown">
           <a href="javascript:;" class="dropdown-toggle">
-            <span class="micon dw dw-agenda"></span><span class="mtext">Job Careers</span>
+            <span class="micon dw dw-calendar"></span><span class="mtext">ຈັດການສັ່ງຊື້ຂອງລູກຄ້າ</span>
           </a>
           <ul class="submenu">
-            <li><a href="/admin/volentears">CSR Career</a></li>
-            <li><a href="/admin/jobs">Jobs Post</a></li>
+            <li><a href="/admin/volentears">ລາຍສັ່ງຊື້ຂອງລູກຄ້າ</a></li>
           </ul>
         </li>
         <li class="dropdown">
           <a href="javascript:;" class="dropdown-toggle">
-            <span class="micon dw dw-analytics-21"></span><span class="mtext">Report Lists</span>
+            <span class="micon dw dw-analytics-21"></span><span class="mtext">ລາຍງານຂໍ້ມູນ</span>
           </a>
           <ul class="submenu">
-            <li><a href="#">Project Reports</a></li>
-            <li><a href="#">Career Reports</a></li>
-            <li><a href="#">Employee Reports</a></li>
-            <li><a href="#">System Reports</a></li>
+            <li><a href="#">ລາຍງານຂໍ້ມູນຍອດສັ່ງຊື້</a></li>
           </ul>
         </li>
-
-        <li>
-          <a href="/admin/org" class="dropdown-toggle no-arrow">
-            <span class="micon dw dw-diagram"></span><span class="mtext">Org Information</span>
-          </a>
-        </li>
-        <!-- <li>
-                    <a href="#" class="dropdown-toggle no-arrow">
-                        <span class="micon dw dw-chat3"></span><span class="mtext">Chat</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="dropdown-toggle no-arrow">
-                        <span class="micon dw dw-invoice"></span><span class="mtext">Invoice</span>
-                    </a>
-                </li> -->
         <li>
           <div class="dropdown-divider"></div>
         </li>
@@ -188,16 +135,11 @@
         </li>
         <li>
           <a href="javascript:;" class="dropdown-toggle">
-            <span class="micon dw dw-user"></span><span class="mtext">User</span>
+            <span class="micon dw dw-user"></span><span class="mtext">ຂໍ້ມູນຜູ້ໃຊ້</span>
           </a>
           <ul class="submenu">
-            <% if(user.role==='ADMIN' ) { %>
-              <li><a href="/admin/users/profile">My Profile</a></li>
-              <li><a href="/admin/users">Manager Users</a></li>
-              <% } else { %>
-                <li><a href="/admin/users/profile">My Profile</a></li>
-                <li><a href="/admin/users/change-password">Change Password</a></li>
-                <% } %>
+            <li><a href="/admin/users/profile">ຂໍ້ມູນສ່ວນຕົວ</a></li>
+            <li><a href="/admin/users/change-password">ປ່ຽນລະຫັດ</a></li>
           </ul>
         </li>
         <li>
@@ -207,15 +149,9 @@
           </a>
         </li>
         <li>
-          <a href="/admin/feedbacks" class="dropdown-toggle no-arrow">
-            <span class="micon dw dw-help"></span>
-            <span class="mtext">Feedbacks</span>
-          </a>
-        </li>
-        <li>
           <a href="/auth/signout" class="dropdown-toggle no-arrow">
             <span class="micon dw dw-logout"></span>
-            <span class="mtext">Logout</span>
+            <span class="mtext">ອອກຈາກລະບົບ</span>
           </a>
         </li>
       </ul>
