@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <%- include('../../partials/header')%>
+<body>
+
+  <%- include('../../partials/navigation')%>
+
+  <%- include('../../partials/sidebar')%>
+
+	<div class="main-container">
+		<div class="pd-ltr-20">
+      <div class="page-header">
+        <div class="row">
+          <div class="col-md-6 col-sm-12">
+            <div class="title">
+              <h4>Project Management</h4>
+            </div>
+            <nav aria-label="breadcrumb" role="navigation">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/admin">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Projects</li>
+              </ol>
+            </nav>
+          </div>
+          <div class="col-md-6 col-sm-12 text-right">
+            <div class="dropdown">
+              <a class="btn btn-primary" href="/admin/projects/create-project" role="button">
+                Create
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+			<div class="card-box mb-30">
+				<h2 class="h4 pd-20">Project List</h2>
+				<table class="data-table table nowrap">
+					<thead>
+						<tr>
+							<th class="table-plus datatable-nosort">Image</th>
+							<th>Name</th>
+							<th>Remark</th>
+							<th>Status</th>
+							<th>Created At</th>
+							<th class="datatable-nosort">Action</th>
+						</tr>
+					</thead>
+          <% if(typeof projects !== 'undefined') { %>
+            <tbody>
+              <% projects.forEach(function(project){ %>
+              <tr>
+                <td class="table-plus">
+                  <% if(project.image == "") { %>
+                      <img src="/uploads/noimage.png" width="70" height="70" alt="">
+                    <% } else { %>
+                      <img src="/uploads/images/projects/<%= project._id %>/<%= project.image %>" width="70" height="70" alt="">
+                    <% } %>
+                </td>
+                <td>
+                  <h5 class="font-16"><%= project.name_eng %></h5>
+                  <%= project.name_lao %>
+                </td>
+                <td><%= project.remark %></td>
+                <td><%= project.status %></td>
+                <td><%= project.createdAt.toLocaleDateString() %></td>
+                <td>
+                  <div class="dropdown">
+                    <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                      <i class="dw dw-more"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                      <a class="dropdown-item" href="#"><i class="dw dw-add-file"></i> Upload</a>
+                      <a class="dropdown-item" href="/admin/projects/view/<%= project._id %>"><i class="dw dw-eye"></i> View</a>
+                      <a class="dropdown-item" href="/admin/projects/edit/<%= project._id %>"><i class="dw dw-edit2"></i> Edit</a>
+                      <a class="dropdown-item" href="/admin/projects/delete/<%= project._id %>"><i class="dw dw-delete-3"></i> Delete</a>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <% }); %>
+            </tbody>
+          <% } else { %>
+					<tbody>
+            <tr>
+              <td class="table-plus">
+                <img src="/uploads/noimage.png" width="70" height="70" alt="">
+              </td>
+              <td>
+                <h5 class="font-16">Empty</h5>
+                ...
+              </td>
+              <td>...</td>
+              <td>...</td>
+              <td>...</td>
+              <td>...</td>
+              <td>
+                <div class="dropdown">
+                  <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                    <i class="dw dw-more"></i>
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                    <a class="dropdown-item" href="/admin/customers/view/"><i class="dw dw-eye"></i> View</a>
+                    <a class="dropdown-item" href="/admin/customers/edit/"><i class="dw dw-edit2"></i> Edit</a>
+                    <a class="dropdown-item" href="/admin/customers/delete/"><i class="dw dw-delete-3"></i> Delete</a>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+          <% } %>
+				</table>
+			</div>
+			<%- include('../../partials/footer')%>
+		</div>
+	</div>
+	<!-- js -->
+  <%- include('../../partials/script')%>
+</body>
+</html>

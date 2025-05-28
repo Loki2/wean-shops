@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <%- include('../../partials/header')%>
+<body>
+  <%- include('../../partials/navigation')%>
+
+  <%- include('../../partials/sidebar')%>
+
+	<div class="main-container">
+		<div class="pd-ltr-20 xs-pd-20-10">
+			<div class="min-height-200px">
+				<div class="page-header">
+					<div class="row">
+						<div class="col-md-12 col-sm-12">
+							<div class="title">
+								<h4>Banner Detail</h4>
+							</div>
+							<nav aria-label="breadcrumb" role="navigation">
+								<ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="/admin">Home</a></li>
+									<li class="breadcrumb-item"><a href="/admin/banners">Banners</a></li>
+									<li class="breadcrumb-item active" aria-current="page">View</li>
+								</ol>
+							</nav>
+						</div>
+					</div>
+				</div>
+				<div class="blog-wrap">
+					<div class="container pd-0">
+						<div class="row">
+							<div class="col-md-12 col-sm-12">
+								<div class="blog-detail card-box overflow-hidden mb-30">
+									<div class="blog-img">
+										<% if(image == "" ) { %>
+                      <img src="/uploads/noimage.png" alt="">
+                    <% } else { %>
+                      <img src="/uploads/images/banners/<%= id %>/<%= image %>" alt="">
+                    <% } %>
+									</div>
+									<div class="blog-caption">
+										<h4 class="mb-10"><%= title %></h4>
+										<p><%= desc %></p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<%- include('../../partials/footer')%>
+		</div>
+	</div>
+	<!-- js -->
+  <%- include('../../partials/script')%>
+</body>
+</html>
