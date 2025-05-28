@@ -68,7 +68,6 @@ const AuthRoutes = require('./routes/auth.router');
 const AdminRoutes = require('./routes/admin.router');
 const UserRoutes = require('./routes/user.router');
 const CategoryRoutes = require('./routes/category.router');
-const ProjectRoutes = require('./routes/project.router');
 const ProductRoutes = require('./routes/product.router');
 
 
@@ -77,7 +76,6 @@ app.use('/auth', AuthRoutes);
 app.use('/admin', AdminRoutes);
 app.use('/admin/users', UserRoutes);
 app.use('/admin/categories', CategoryRoutes);
-app.use('/admin/projects', ProjectRoutes);
 app.use('/admin/products', ProductRoutes);
 
 

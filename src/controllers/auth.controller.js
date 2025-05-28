@@ -53,6 +53,72 @@ exports.get_register = async (req, res, next) => {
   res.render("signup");
 };
 
+
+exports.post_register = async (req, res, next) => {
+  try {
+    const { username, email, password, confirmPassword } = req.body;
+
+    //Check if empty fill
+    if (!username || !email || !password || !confirmPassword) {
+      res.status(400).json({ message: "Please Fill all require fields...!" });
+    }
+
+    // console.log("user data", req.body);
+
+    //Validation Username
+    const isValidUsername = validateUsername(username);
+    if (!isValidUsername) {
+      res.status(400).json({
+        message: "Please Enter a Username between 3 to 20 characters...",
+      });
+    }
+
+    //Validation Email
+    const isValidEmail = validateEmail(email);
+    if (!isValidEmail) {
+      res.status(400).json({ message: 'Please Enter Valid Email' });
+    }
+
+    //Validate Password
+    const isValidPassword = validatePassword(password);
+    if (!isValidPassword) {
+      res.status(400).json({ message: 'Please must be leatst at 6 to 60 charecters' })
+    }
+
+    //check matched password
+    if (password !== confirmPassword) {
+      res.status(400).json({ error: 'Password do not match...!' })
+    }
+
+    //Check exist username
+    const isUsername = await User.findOne({ username });
+    if (isUsername) {
+      res.status(400).json({ error: 'Username already in used...' })
+    }
+
+    //Check Existing Email
+    const isEmail = await User.findOne({ email });
+    if (isEmail) {
+      res.status(400).json({ error: 'Email already in used...' })
+    }
+
+    //Hash Password
+    const hashedPassword = await bcrypt.hash(password, 12);
+    const newUser = new User({
+      username,
+      email,
+      password: hashedPassword
+    });
+
+    await newUser.save();
+
+    res.redirect('/admin/users');
+
+  } catch (error) {
+    next(error)
+  }
+}
+
 exports.get_signout = async (req, res, next) => {
   try {
     // const isUser = res.locals.user;
