@@ -27,93 +27,6 @@ exports.get_home = async (req, res, next) => {
   }
 };
 
-exports.get_org = async (req, res, next) => {
-  try {
-    const organize = await Organize.findOne();
-
-    console.log("org data", organize)
-
-    res.render("org", {
-      id: organize._id,
-      name_lao: organize.name_lao,
-      name_eng: organize.name_eng,
-      desc: organize.desc,
-      bio: organize.bio,
-      phone: organize.phone,
-      contact: organize.contact,
-      email: organize.email,
-      city: organize.city,
-      address: organize.address,
-      province: organize.province,
-      country: organize.country,
-      found_date: organize.found_date.toLocaleString(),
-      chart: organize.chart
-    })
-  } catch (error) {
-    next(error)
-  }
-}
-
-exports.get_teams = async (req, res, next) => {
-  try {
-    const employees = await Employee.find({}).sort({ createdAt: -1 });
-
-    res.render("team", {
-      employees: employees
-    })
-  } catch (error) {
-    next(error);
-  }
-
-}
-
-exports.get_clientsProj = async (req, res, next) => {
-  try {
-    const projects = await Project.find({}).sort({ createdAt: -1 });
-    const customers = await Customer.find({}).sort({ createdAt: -1 });
-
-    res.render("clientpro", {
-      projects: projects,
-      customers: customers,
-    })
-  } catch (error) {
-    next(error)
-  }
-}
-
-exports.get_service = async (req, res, next) => {
-  try {
-    const services = await Service.find({}).sort({ createdAt: -1 });
-    const projects = await Project.find({}).sort({ createdAt: -1 });
-    const customers = await Customer.find({}).sort({ createdAt: -1 });
-
-
-    res.render("service", {
-      services: services,
-      projects: projects,
-      customers: customers
-    });
-  } catch (error) {
-    next(error);
-  }
-};
-
-exports.get_service_electrical = async (req, res, next) => {
-  try {
-    res.render("electrical");
-  } catch (error) {
-    next(error);
-  }
-};
-
-exports.get_home_agriculture = async (req, res, next) => {
-  try {
-    res.render("agriculture");
-  } catch (error) {
-    next(error);
-  }
-}
-
 exports.get_home_products = async (req, res, next) => {
   try {
 
@@ -122,46 +35,69 @@ exports.get_home_products = async (req, res, next) => {
     // console.log("product", products)
 
     res.render("products", {
-      products: products
+      title: "Products Catalogs",
+      // products: products
     });
   } catch (error) {
     next(error);
   }
 };
 
-
-exports.get_home_volentears = async (req, res, next) => {
+exports.get_home_carts = async (req, res, next) => {
   try {
-    const volunteers = await Volentear.find({}).sort({ createdAt: -1 });
-
-    res.render('volentear', {
-      volunteers: volunteers
-    })
+    res.render("carts", {
+      title: "Carts Orders",
+      // products: products
+    });
   } catch (error) {
-    next(error)
+    next(error);
   }
 }
 
 
-exports.get_home_jobs = async (req, res, next) => {
-  try {
-    const jobs = await Job.find({}).sort({ createdAt: -1 });
 
-    res.render('hiring', {
-      jobs: jobs
-    })
+exports.get_checkout = async (req, res, next) => {
+  try {
+    res.render("checkout", {
+      title: "Checkout Wishlist",
+      // products: products
+    });
   } catch (error) {
-    next(error)
+    next(error);
+  }
+}
+
+
+exports.get_orders = async (req, res, next) => {
+  try {
+    res.render("orders", {
+      title: "Orders List",
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
+
+
+exports.get_home_blogs = async (req, res, next) => {
+  try {
+
+    res.render("blogs", {
+      title: "Blogs",
+      // products: products
+    });
+  } catch (error) {
+    next(error);
   }
 }
 
 
 exports.get_home_about = async (req, res, next) => {
   try {
-    const employees = await Employee.find({}).sort({ createdAt: -1 });
 
     res.render('about', {
-      employees: employees
+      title: "About Us",
     })
   } catch (error) {
     next(error)
@@ -170,7 +106,9 @@ exports.get_home_about = async (req, res, next) => {
 
 exports.get_home_contact = async (req, res, next) => {
   try {
-    res.render("contact");
+    res.render("contact", {
+      title: "Contact Us",
+    });
   } catch (error) {
     next(error);
   }
