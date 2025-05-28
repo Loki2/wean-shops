@@ -1,18 +1,18 @@
 const express = require("express");
 const { authenticated } = require("../middleware/authHandler");
 const {
-      get_users,
-      get_addUser,
-      post_addUser,
-      get_profile,
-      get_changePassword, //loggedin user change pwd
-      post_changePassword,
-      get_resetPassowrd, //admin update user pwd
-      post_resetPassowrd,
-      get_myInform,
-      update_myInform,
-      get_updatePermission,
-      post_updatePermission
+  get_users,
+  get_addUser,
+  post_addUser,
+  get_profile,
+  get_changePassword, //loggedin user change pwd
+  post_changePassword,
+  get_resetPassowrd, //admin update user pwd
+  post_resetPassowrd,
+  get_myInform,
+  update_myInform,
+  get_updatePermission,
+  post_updatePermission
 } = require("../controllers/user.controller");
 
 const router = express.Router();

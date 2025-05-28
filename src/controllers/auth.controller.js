@@ -49,6 +49,10 @@ exports.post_signin = async (req, res, next) => {
   }
 };
 
+exports.get_register = async (req, res, next) => {
+  res.render("signup");
+};
+
 exports.get_signout = async (req, res, next) => {
   try {
     // const isUser = res.locals.user;
