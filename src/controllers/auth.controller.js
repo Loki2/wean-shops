@@ -121,7 +121,7 @@ exports.post_register = async (req, res, next) => {
 
     await newUser.save();
 
-    res.redirect('/auth/login');
+    res.redirect('/admin');
 
   } catch (error) {
     next(error)
