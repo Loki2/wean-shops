@@ -1,17 +1,13 @@
-const Banner = require("../models/banner");
-const Project = require("../models/project");
-const Blog = require("../models/blog");
-const Service = require('../models/category');
-const Customer = require('../models/customer');
 const Product = require('../models/product');
-const Job = require('../models/job');
-const Volentear = require('../models/volenteer');
-const Employee = require("../models/employee");
 const Feedback = require('../models/feedback');
-const Organize = require("../models/organize");
 
 exports.get_home = async (req, res, next) => {
   try {
+
+    const user = res.locals.user;
+    const products = await Product.find({}).sort({ createdAt: -1 });
+
+
     // const banners = await Banner.find({}).sort({ createdAt: -1 });
     // const projects = await Project.find({}).sort({ createdAt: -1 });
     // const blogs = await Blog.find({}).sort({ createdAt: -1 });
@@ -21,6 +17,7 @@ exports.get_home = async (req, res, next) => {
 
     res.render("index", {
       title: "Home",
+      products: products
     });
   } catch (error) {
     next(error);
@@ -36,12 +33,31 @@ exports.get_home_products = async (req, res, next) => {
 
     res.render("products", {
       title: "Products Catalogs",
-      // products: products
+      products: products
     });
   } catch (error) {
     next(error);
   }
 };
+
+exports.get_home_product = async (req, res, next) => {
+  try {
+
+    const product_id = req.params.product_id;
+
+    const product = await Product.findById({ _id: product_id });
+
+    console.log("product id:", product_id)
+
+    res.render("product", {
+      title: "Products view",
+      product: product
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 
 exports.get_home_carts = async (req, res, next) => {
   try {

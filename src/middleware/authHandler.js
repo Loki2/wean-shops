@@ -10,7 +10,7 @@ const authenticated = (req, res, next) => {
       if(error) {
         // res.status(401)
         console.log(error.message)
-        res.redirect('/auth/signin')
+        res.redirect('/auth/login')
       } else {
         let user = await User.findById(decodedToken.id);
         // console.log("currently user:", user)
@@ -19,7 +19,7 @@ const authenticated = (req, res, next) => {
       }
     })
   }else {
-    res.redirect('/auth/signin');
+    res.redirect('/auth/register');
   }
 }
 
