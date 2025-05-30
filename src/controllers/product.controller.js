@@ -31,16 +31,17 @@ exports.get_createProduct = async (req, res, next) => {
 exports.post_createProduct = async (req, res, next) => {
   try {
     const imageFile = typeof req.files.productImage !== 'undefined' ? req.files.productImage.name : "";
-    const { code, name, desc, stock_available, status } = req.body;
+    const { code, name, desc, price, stock_available, status } = req.body;
     const category = req.body.category;
 
     const product = new Product({
       code: code,
       name: name,
       desc: desc,
+      price: price,
       image: imageFile,
       category: category,
-      stock: stock_available, // Default stock value
+      stock: stock_available, // Default stock value 0
       status: status
     });
 

@@ -18,15 +18,24 @@
         </div>
       </div>
 
+      <pre><%= product %></pre>
+
       <section class="ftco-section">
         <div class="container">
           <div class="row">
             <div class="col-lg-6 mb-5 ftco-animate">
-              <a href="/client/images/product-1.png" class="image-popup prod-img-bg"><img
-                  src="/client/images/product-1.png" class="img-fluid" alt="Colorlib Template"></a>
+              <a href="/client/images/product-1.png" class="image-popup prod-img-bg">
+                <% if(product.image=="" ) { %>
+                  <img src="/uploads/noimage.png" width="70" height="70" alt="">
+                  <% } else { %>
+                    <img class="img-fluid" src="/uploads/images/products/<%= product._id %>/<%= product.image %>"
+                      alt="" />
+                    <% } %>
             </div>
             <div class="col-lg-6 product-details pl-md-5 ftco-animate">
-              <h3>Nike Free RN 2019 iD</h3>
+              <h3>
+                <%= product.name %>
+              </h3>
               <div class="rating d-flex">
                 <p class="text-left mr-4">
                   <a href="#" class="mr-2">5.0</a>
@@ -86,10 +95,11 @@
                 </div>
                 <div class="w-100"></div>
                 <div class="col-md-12">
-                  <p style="color: #000;">80 piece available</p>
+                  <p style="color: #000;">
+                    <%= product.price %</p>
                 </div>
               </div>
-              <p><a href="cart.html" class="btn btn-black py-3 px-5 mr-2">Add to Cart</a><a href="cart.html"
+              <p><a href="/add-carts" class="btn btn-black py-3 px-5 mr-2">Add to Cart</a><a href="/order"
                   class="btn btn-primary py-3 px-5">Buy now</a></p>
             </div>
           </div>
