@@ -1,6 +1,11 @@
 const bcrypt = require("bcryptjs");
 const User = require('../models/user');
 const jwt = require('jsonwebtoken');
+const {
+  validateUsername,
+  validateEmail,
+  validatePassword,
+} = require("../utils/isValidated");
 
 //create user token
 const maxAge = 3 * 24 * 60 * 60;
@@ -18,6 +23,8 @@ exports.post_signin = async (req, res, next) => {
   try {
     const { username, password } = req.body;
 
+    console.log(`first req body`, req.body);
+
     //Check empty fill
     if (!username || !password) {
       res.status(400).json({ message: 'Please Fill all require fields...!' })
@@ -29,17 +36,19 @@ exports.post_signin = async (req, res, next) => {
       res.status(400).json({ message: 'Not found this username, Please signup, try again...!' })
     }
 
+    console.log(`user`, user.password);
+
     //Compare Password
-    const isPassword = await bcrypt.compare(password, user.password);
+    const isPassword = bcrypt.compareSync(password, user.password);
     if (!isPassword) {
-      res.status(400).json({ message: 'Email or Passowrd incorrect...!' })
+      res.status(400).json({ message: 'Email or Password incorrect...!' })
     }
 
 
     //Create Token
     const token = createToken(user._id);
 
-    //Send Token to fronten
+    //Send Token to frontend
     res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
 
     res.redirect('/admin');
@@ -48,6 +57,8 @@ exports.post_signin = async (req, res, next) => {
     next(error);
   }
 };
+
+
 
 exports.get_register = async (req, res, next) => {
   res.render("signup");
@@ -62,8 +73,6 @@ exports.post_register = async (req, res, next) => {
     if (!username || !email || !password || !confirmPassword) {
       res.status(400).json({ message: "Please Fill all require fields...!" });
     }
-
-    // console.log("user data", req.body);
 
     //Validation Username
     const isValidUsername = validateUsername(username);
@@ -82,7 +91,7 @@ exports.post_register = async (req, res, next) => {
     //Validate Password
     const isValidPassword = validatePassword(password);
     if (!isValidPassword) {
-      res.status(400).json({ message: 'Please must be leatst at 6 to 60 charecters' })
+      res.status(400).json({ message: 'Please must be latest at 6 to 60 charecters' })
     }
 
     //check matched password
@@ -112,7 +121,7 @@ exports.post_register = async (req, res, next) => {
 
     await newUser.save();
 
-    res.redirect('/admin/users');
+    res.redirect('/auth/login');
 
   } catch (error) {
     next(error)

@@ -13,7 +13,7 @@ const authenticated = (req, res, next) => {
         res.redirect('/auth/login')
       } else {
         let user = await User.findById(decodedToken.id);
-        // console.log("currently user:", user)
+        console.log("currently user:", user)
         res.locals.user = user;
         next();
       }
