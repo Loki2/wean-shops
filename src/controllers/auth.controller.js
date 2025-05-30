@@ -119,7 +119,13 @@ exports.post_register = async (req, res, next) => {
       password: hashedPassword
     });
 
-    await newUser.save();
+    const user = await newUser.save();
+
+    //Create Token
+    const token = createToken(user._id);
+
+    //Send Token to frontend
+    res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
 
     res.redirect('/admin');
 
