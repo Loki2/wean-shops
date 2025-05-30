@@ -47,7 +47,9 @@ exports.get_home_product = async (req, res, next) => {
 
     const product = await Product.findById({ _id: product_id });
 
-    console.log("product id:", product_id)
+    console.log("product id:", product)
+
+    if (!product) throw error(302, "can not fetch product");
 
     res.render("product", {
       title: "Products view",
