@@ -23,8 +23,6 @@ exports.post_signin = async (req, res, next) => {
   try {
     const { username, password } = req.body;
 
-    console.log(`first req body`, req.body);
-
     //Check empty fill
     if (!username || !password) {
       res.status(400).json({ message: 'Please Fill all require fields...!' })
@@ -36,14 +34,13 @@ exports.post_signin = async (req, res, next) => {
       res.status(400).json({ message: 'Not found this username, Please signup, try again...!' })
     }
 
-    console.log(`user`, user.password);
+
 
     //Compare Password
-    const isPassword = bcrypt.compareSync(password, user.password);
+    const isPassword = await bcrypt.compare(password, user.password);
     if (!isPassword) {
       res.status(400).json({ message: 'Email or Password incorrect...!' })
     }
-
 
     //Create Token
     const token = createToken(user._id);
