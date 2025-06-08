@@ -69,7 +69,7 @@ const AdminRoutes = require('./routes/admin.router');
 const UserRoutes = require('./routes/user.router');
 const CategoryRoutes = require('./routes/category.router');
 const ProductRoutes = require('./routes/product.router');
-
+const OrdersRouter = require('./routes/orders.router');
 
 
 app.use('/auth', AuthRoutes);
@@ -77,6 +77,7 @@ app.use('/admin', AdminRoutes);
 app.use('/admin/users', UserRoutes);
 app.use('/admin/categories', CategoryRoutes);
 app.use('/admin/products', ProductRoutes);
+app.use('/admin/orders', OrdersRouter)
 
 
 //Home Router
