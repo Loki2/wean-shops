@@ -48,7 +48,7 @@ exports.post_signin = async (req, res, next) => {
     //Send Token to frontend
     res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
 
-    res.redirect('/admin');
+    res.redirect('/user/home');
 
   } catch (error) {
     next(error);

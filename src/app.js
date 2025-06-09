@@ -82,9 +82,11 @@ app.use('/admin/orders', OrdersRouter)
 
 //Home Router
 const HomeRoutes = require('./routes/home.router');
+const MeRoutes = require('./routes/me.router');
 
 
 app.use('/', HomeRoutes);
+app.use('/user/', MeRoutes)
 
 //Handle Error
 app.use((req, res, next) => {
