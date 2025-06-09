@@ -117,3 +117,13 @@ exports.get_feedbacks = async (req, res, next) => {
     next(error)
   }
 }
+
+
+exports.get_orders = async (req, res) => {
+  try {
+    // GET all user orders for admin management
+    res.render("admin/orders/index")
+  } catch (error) {
+
+  }
+}

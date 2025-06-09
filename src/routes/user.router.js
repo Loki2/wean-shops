@@ -12,8 +12,9 @@ const {
   get_myInform,
   update_myInform,
   get_updatePermission,
-  post_updatePermission
+  post_updatePermission,
 } = require("../controllers/user.controller");
+
 
 const router = express.Router();
 
@@ -23,7 +24,7 @@ router.get("/add-user", authenticated, get_addUser);
 
 router.post("/add-user", authenticated, post_addUser);
 
-//Get LoggedinUser Profile
+//Get Logged in User Profile
 router.get("/profile", authenticated, get_myInform);
 
 router.post("/profile/:id", authenticated, update_myInform);
@@ -42,5 +43,7 @@ router.post("/reset-password/:id", authenticated, post_resetPassowrd);
 router.get("/permission-update/:id", authenticated, get_updatePermission);
 
 router.post("/permission-update/:id", authenticated, post_updatePermission);
+
+
 
 module.exports = router;

@@ -132,15 +132,14 @@ exports.post_changePassword = async (req, res, next) => {
       password: hashedPassword
     });
 
-    res.redirect('/auth/signin')
+    res.redirect('/auth/login')
   } catch (error) {
     next(error)
   }
 }
 
 
-
-//Loggedin User Profile
+//Logged in User Profile
 exports.get_myInform = async (req, res, next) => {
   try {
     const user = res.locals.user;
@@ -149,8 +148,8 @@ exports.get_myInform = async (req, res, next) => {
 
     res.render('admin/users/myInfo', {
       id: user._id,
-      firstname: user.firstname,
-      lastname: user.lastname,
+      first_name: user.first_name,
+      last_name: user.last_name,
       gender: user.gender,
       dob: user.dob,
       bio: user.bio,
@@ -325,3 +324,6 @@ exports.post_updatePermission = async (req, res, next) => {
     next(error);
   }
 }
+
+
+
